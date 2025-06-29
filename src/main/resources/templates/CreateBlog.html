@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+
+    <!-- TinyMCE CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    
+    
+
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            /* padding: 20px; */
+        }
+        .form-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(to bottom right, #ffffff, #f3f3f8);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f1c2c;
+}
+
+/* ===== Form Heading ===== */
+.form-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f1c2c;
+}
+
+/* ===== Message Styling ===== */
+.form-message span {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+/* ===== Labels ===== */
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 1.2rem;
+  color: #444;
+}
+
+/* ===== Inputs & Textareas ===== */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  color: #1f1c2c;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #928dab;
+  box-shadow: 0 0 0 3px rgba(146, 141, 171, 0.2);
+}
+
+/* ===== Submit Button ===== */
+.form-button {
+  margin-top: 2rem;
+  background-color: #928dab;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #1f1c2c;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  .form-heading {
+    font-size: 1.5rem;
+  }
+
+  .form-button {
+    width: 100%;
+  }
+}
+.navbar {
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin:-8px;
+}
+
+/* Navbar Links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffd700;
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  }
+    </style>
+</head>
+<body>
+	<div class="navbar">
+        <a href="/">Ashu Blog App</a>
+        <a href="/userdashboard">Posts</a>
+        <a href="createblog">New Post</a>
+        <a href="/comments">Comments</a>
+        <a href="/">Logout</a>
+    </div>
+    <div class="form-container">
+  <h2 class="form-heading">Create Post</h2>
+
+  <p class="form-message">
+    <span th:text="${msg}">Success message here</span>
+  </p>
+
+  <form class="create-form" th:action="@{createblog}" method="post" th:object="${createBlogForm}">
+    
+    <label class="form-label">Title</label>
+    <input class="form-input" type="text" th:field="*{title}" placeholder="Enter post title" />
+
+    <label class="form-label">Short Description</label>
+    <textarea class="form-textarea" th:field="*{shortDesc}" placeholder="Enter post short description"></textarea>
+
+    <label class="form-label">Content</label>
+    <textarea class="form-textarea" id="content" th:field="*{content}" placeholder="Enter post content"></textarea>
+
+    <button class="form-button" type="submit">Submit</button>
+  </form>
+</div>
+    <script>
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+    
+
+</body>
+</html>

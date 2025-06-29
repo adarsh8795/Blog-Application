@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Details</title>
+    <style>
+    .login-a {
+    display: flex
+;
+    float: right;
+    background-color: black;
+    margin-left: auto;
+}
+    .blog-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f1c2c;
+}
+
+/* Blog Title and Subtitle */
+.blog-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1f1c2c;
+}
+
+.blog-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Blog Section Heading */
+.blog-section-heading {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+  border-left: 4px solid #928dab;
+  padding-left: 10px;
+}
+
+/* Blog Content List */
+.blog-content-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.blog-content-item {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Comment Section */
+.comment-section {
+  margin-top: 3rem;
+}
+
+.comment-heading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* Individual Comment */
+.comment-box {
+  background-color: #f9f9fb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.comment-name,
+.comment-date {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.comment-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.comment-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+/* Comment Form */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.comment-input,
+.comment-textarea {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.comment-input:focus,
+.comment-textarea:focus {
+  border-color: #928dab;
+}
+
+.comment-button {
+  background-color: #928dab;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-button:hover {
+  background-color: #1f1c2c;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .blog-container {
+    padding: 1.2rem;
+  }
+
+  .blog-title {
+    font-size: 1.6rem;
+  }
+
+  .blog-subtitle {
+    font-size: 1rem;
+  }
+
+  .blog-section-heading {
+    font-size: 1.1rem;
+  }
+
+  .comment-button {
+    font-size: 1rem;
+  }
+}
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar Links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffd700;
+  transform: translateY(-2px);
+}
+
+/* Search Box Styling */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.search-box label {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.search-box input {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.search-box button {
+  padding: 6px 12px;
+  background-color: #ffd700;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #ffea00;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-box {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .search-box input {
+    flex: 1;
+    width: 50%;
+  }
+}
+
+         .footer {
+ background: linear-gradient(to right, #1f1c2c, #928dab);
+    padding: 0.5rem 2rem
+32px
+;
+    text-align: center;
+    margin-top: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    /* border-top-left-radius: 12px; */
+    /* border-top-right-radius: 12px;
+}
+
+/* Footer Text */
+.footer-text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  line-height: 1.6;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+
+/* Optional Strong Text Highlight */
+.footer-text strong {
+  color: #ffd700;
+}
+
+/* Hover Effect (Optional) */
+.footer-text:hover {
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffd700, 0 0 10px #fff;
+}
+
+/* Responsive Adjustment (Optional) */
+@media (max-width: 600px) {
+  .footer {
+    padding: 1rem;
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+  }
+}
+}
+      
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Ashu Blog App</a>
+        <a href="/">All Posts</a>
+       <!--  <a href="/register">Register</a> -->
+        <a class="login-a" href="/login">Login</a>
+    </div>
+
+    <div class="blog-container">
+  <!-- Blog Title -->
+  <h2 class="blog-title" th:text="${blog.title}">What is Java</h2>
+  <p class="blog-subtitle" th:text="${blog.shortDesc}">Java is a programming language</p>
+
+  <!-- Blog Content -->
+  <h4 class="blog-section-heading">Introduction</h4>
+  <ul class="blog-content-list">
+    <li class="blog-content-item" th:utext="${blog.content}">Java is a computer programming language</li>
+  </ul>
+
+  <!-- Comments Section -->
+  <div class="comment-section">
+    <h4 class="comment-heading">Comments:</h4>
+
+    <div class="comment-box" th:each="comment : ${comments}">
+      <p class="comment-name"><strong>Name:</strong> <span th:text="${comment.name}">John</span></p>
+      <p class="comment-date"><strong>Date:</strong> <span th:text="${comment.createdDate}">02 May 2023</span></p>
+      <p class="comment-text" th:text="${comment.content}">Nice Blog.. Keep writing</p>
+      <hr class="comment-divider"/>
+    </div>
+
+    <!-- Comment Form -->
+    <h4 class="comment-heading">Leave a comment</h4>
+    <form class="comment-form" th:action="@{/comment}" th:object="${comment}" method="post">
+      <input class="comment-input" type="text" th:field="*{name}" placeholder="Enter name" required/>
+      <input class="comment-input" type="email" th:field="*{email}" placeholder="Enter email" required/>
+      <textarea class="comment-textarea" th:field="*{content}" placeholder="Enter comment" rows="4" required></textarea>
+      <input type="hidden" name="blogid" th:value="${blogid}"/>
+      <button class="comment-button" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+    <footer class="footer">
+        <span class="footer-text">Copyright © 2023 <a href="#">Ashok IT</a> All rights reserved.</span>
+    </footer>
+
+</body>
+</html>

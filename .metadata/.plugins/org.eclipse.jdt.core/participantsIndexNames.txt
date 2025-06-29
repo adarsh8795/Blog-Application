@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\Users\adars\Documents\workspace-spring-tools-for-eclipse-4.30.0.RELEASE\MIni_Project_3\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2670149901.index
+\Reports_App-2\src\main\resources
+C:\Users\adars\Documents\workspace-spring-tools-for-eclipse-4.30.0.RELEASE\MIni_Project_3\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2133696700.index
+\Reports_App-2\src\main\resources

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+
+    <!-- TinyMCE CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    
+    
+
+    <style>
+    
+     .navbar {
+            background-color: black;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+       textarea[name="shortDesc"] {
+    font-size: 20px;
+    font-weight: 400 ;
+    
+}
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical; 
+             height: 50px;
+        }
+        .text-input {
+    font-size: 20px;
+    font-weight: 500; /* Medium weight */
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        
+         input[type="text"] {
+		    height: 50px; /* or adjust as needed */
+		    font-size: 20px;
+		}
+        button:hover {
+            background-color: #0056b3;
+        }
+        input.text-input {
+    height: 50px;
+}
+textarea.text-input {
+    min-height: 50px;
+    resize: vertical;
+}
+    </style>
+</head>
+<body>
+	<div class="navbar">
+        <a href="/">Ashu Blog App</a>
+        <a href="/userdashboard">Posts</a>
+        <a href="createblog">New Post</a>
+        <a href="/comments">Comments</a>
+        <a href="/">Logout</a>
+    </div>
+    <div class="form-container">
+        
+        <h2>Edit Post</h2>
+		<p ><span style="color: green; font-size: 20px; " th:text="${msg}"></span></p>
+        <form th:action="@{edit}" method="post" th:object="${createBlogForm}">
+        	 <input type="hidden" name="postId" th:value="${postId}" />
+            <label>Title</label>
+            <input type="text" th:field = "*{title}" placeholder="Enter post title" />
+
+            <label>Short Description</label>
+            <textarea th:field = "*{shortDesc}" class="text-input" placeholder="Enter post short description" oninput="autoResize(this)"></textarea>
+
+            <label>Content</label>
+            <textarea id="content" th:field = "*{content}" placeholder="Enter post content"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+	<script>
+	function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    // Apply auto-resize on page load for prefilled values
+    document.querySelectorAll('textarea:not(#content)').forEach(autoResize);
+	
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+</body>
+</html>

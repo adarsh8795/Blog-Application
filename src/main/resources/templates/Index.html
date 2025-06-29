@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+    <title>Ashok IT Blog App</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar Links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffd700;
+  transform: translateY(-2px);
+}
+
+/* Search Box Styling */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+      margin-left: auto;
+}
+
+.search-box label {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.search-box input {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.search-box button {
+  padding: 6px 12px;
+  background-color: #ffd700;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #ffea00;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-box {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .search-box input {
+    flex: 1;
+    width: 50%;
+  }
+}
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f0f2f5, #f9f9fb);
+  color: #1f1c2c;
+  line-height: 1.6;
+}
+
+/* ===== Container Layout ===== */
+.container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  
+}
+
+/* ===== Blog Card ===== */
+.blog-box {
+  background: linear-gradient(to bottom right, #ffffff, #f3f3f8);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.8rem 1.5rem;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Blog Title ===== */
+.blog-h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.blog-a {
+  text-decoration: none;
+  color: #1f1c2c;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.blog-a:hover {
+  color: #928dab;
+}
+
+/* ===== Blog Date and Meta ===== */
+.blog-span {
+  font-size: 0.85rem;
+  color: #555;
+  margin-right: 0.4rem;
+  font-weight: 500;
+}
+
+.blog-date {
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+/* ===== Description Text ===== */
+.blog-description {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 1rem;
+}
+
+.blog-short {
+  display: inline;
+}
+
+/* ===== Read More Link ===== */
+.blog-readMore {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #004e92;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.blog-readMore:hover {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .blog-box {
+    max-width: 90%;
+  }
+}
+       .footer {
+ background: linear-gradient(to right, #1f1c2c, #928dab);
+    padding: 0.5rem 2rem
+32px
+;
+    text-align: center;
+    margin-top: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    /* border-top-left-radius: 12px; */
+    /* border-top-right-radius: 12px;
+}
+
+/* Footer Text */
+.footer-text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  line-height: 1.6;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Optional Strong Text Highlight */
+.footer-text strong {
+  color: #ffd700;
+}
+
+/* Hover Effect (Optional) */
+.footer-text:hover {
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffd700, 0 0 10px #fff;
+}
+
+/* Responsive Adjustment (Optional) */
+@media (max-width: 600px) {
+  .footer {
+    padding: 1rem;
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+  }
+}}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Each blog box styling */
+.blog-box {
+  background: linear-gradient(to bottom right, #ffffff, #f3f3f8);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.blog-h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-a {
+  text-decoration: none;
+  color: #1f1c2c;
+  font-weight: bold;
+}
+
+.blog-a:hover {
+  color: #928dab;
+}
+
+/* Date */
+.blog-span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.blog-date {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color: #444;
+}
+
+/* Description */
+.blog-description {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.blog-readMore {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #928dab;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.blog-readMore:hover {
+  text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">AINDHA WALE Blog</a>
+        <a href="/">All Posts</a>
+        <a href="/login">Login</a>
+        <div class="search-box">
+            <label><strong>Blog Search</strong></label><br>
+            <input id ="search" type="text" placeholder="Search...">
+            <!-- <button id="searchBtn">Search</button> -->
+        </div>
+    </div>
+	 
+     <div  id="allblog" class="container">
+        <div  class="blog-box" th:each="blog : ${blogs}" >
+        	
+        	
+		    <h3 class="blog-h3">
+		        <a class="blog-a" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">Blog Title</a>
+		    </h3>
+		    <div class="blog-date" th:text="${blog.createdDate}">Blog Date</div> 
+		    
+		    <p class="blog-description">
+		        <span class="blog-short"  th:text="${blog.shortDesc}">Short description...</span>
+		        <a class="blog-readMore" th:href="@{/blog/{id}(id=${blog.id})}">Read more</a>
+		        <div> <span class="blog-span" >Posted by :</span> <span  th:text="${blog.postedBy}">Post By</span></div>
+		    </p>
+		</div>
+		
+	 </div>
+	 
+	 <div id ="result" class="blog-grid"></div>
+
+
+
+	<div>		
+    <footer class="footer">
+        <span class="footer-text">Copyright © 2023 <a href="#">Ash Blogs</a> All rights reserved.</span>
+    </footer>
+	</div>
+	
+	<script>
+        $(document).ready(function() {
+            $("#search").on("input",function() {
+            	
+                $.ajax({
+                    url: "/search",
+                    type: 'GET',
+                    data: {
+                    	searchText: $("#search").val()
+                    },
+                    success: function(blogs) {
+                    	console.log(blogs);
+                    	 $('#allblog').empty(); // Clear old entries
+                    	 let blogHTML ="";
+                    	 
+                    	 if (blogs.length === 0) {
+                    		blogHTML = '<p>No blogs found.</p>';
+                             
+                         }
+                    	 
+                         blogs.forEach(function (blog) {
+                              blogHTML += `
+       								 <div class="blog-box">
+                                     <h3 class="blog-h3">
+                                         <a class="blog-a" href="/blog/${blog.id}">${blog.title}</a>
+                                     </h3>
+                                     <div>
+                                     
+                                     <span class="blog-date">${blog.createdDate}</span>
+                                     </div>
+                                     
+                                     <p class="blog-description">
+                                         <span class="blog-short">${blog.shortDesc}</span>
+                                         <a class="blog-readMore" href="/blog/${blog.id}">Read more</a>
+                                         <div><span class="blog-span" >Posted by :</span> 
+                                         <span >${blog.postedBy}</span></div>
+                                     </p>
+                                 </div>
+                             `;
+                             
+                         });
+                         console.log(blogHTML);
+                         $('#result').html(blogHTML);
+                     },
+                     error: function (err) {
+                         alert("Failed to load blogs");
+                         console.error(err);
+                     }
+                 });
+             });
+         });
+     </script>
+	
+	
+</body>
+</html>
